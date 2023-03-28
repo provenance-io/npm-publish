@@ -32,3 +32,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 -->
 
 ## Unreleased
+
+### Improvements
+
+- [PR 1](https://github.com/provenance-io/npm-publish/pull/1) Telescope boilerplate for npm-publish docker image
