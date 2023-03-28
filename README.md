@@ -8,7 +8,7 @@
 ## install
 
 ```sh
-npm install @provjs/provenance
+npm install @provenanceio/provenance
 ```
 ## Table of contents
 
@@ -34,7 +34,7 @@ npm install @provjs/provenance
 ### RPC Clients
 
 ```js
-import { provenance } from '@provjs/provenance';
+import { provenance } from '@provenanceio/provenance';
 
 const { createRPCQueryClient } = provenance.ClientFactory; 
 const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
@@ -50,10 +50,10 @@ const balances = await client.provenance.exchange.v1beta1
 
 ### Composing Messages
 
-Import the `provenance` object from `@provjs/provenance`. 
+Import the `provenance` object from `@provenanceio/provenance`. 
 
 ```js
-import { provenance } from '@provjs/provenance';
+import { provenance } from '@provenanceio/provenance';
 
 const {
     createSpotLimitOrder,
@@ -65,7 +65,7 @@ const {
 #### CosmWasm Messages
 
 ```js
-import { cosmwasm } from "@provjs/provenance";
+import { cosmwasm } from "@provenanceio/provenance";
 
 const {
     clearAdmin,
@@ -80,7 +80,7 @@ const {
 #### IBC Messages
 
 ```js
-import { ibc } from '@provjs/provenance';
+import { ibc } from '@provenanceio/provenance';
 
 const {
     transfer
@@ -90,7 +90,7 @@ const {
 #### Cosmos Messages
 
 ```js
-import { cosmos } from '@provjs/provenance';
+import { cosmos } from '@provenanceio/provenance';
 
 const {
     fundCommunityPool,
@@ -131,7 +131,7 @@ Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos
 Use `getSigningprovenanceClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
 
 ```js
-import { getSigningprovenanceClient } from '@provjs/provenance';
+import { getSigningprovenanceClient } from '@provenanceio/provenance';
 
 const stargateClient = await getSigningprovenanceClient({
   rpcEndpoint,
@@ -219,7 +219,7 @@ import {
     ibcAminoConverters,
     provenanceAminoConverters,
     provenanceProtoRegistry
-} from '@provjs/provenance';
+} from '@provenanceio/provenance';
 
 const signer: OfflineSigner = /* create your signer (see above)  */
 const rpcEndpint = 'https://rpc.cosmos.directory/provenance'; // or another URL
