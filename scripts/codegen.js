@@ -28,7 +28,6 @@ telescope({
       methods: {
         toJSON: true,
         fromJSON: true,
-        toAminoJSON: true
       }
     },
     aminoEncoding: {

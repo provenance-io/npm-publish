@@ -25,7 +25,7 @@
     "build": "npm run build:module && npm run build:main",
     "buidl": "npm run build && npm run build:ts",
     "codegen": "cross-env NODE_ENV=development babel-node scripts/codegen.js",
-    "prepare": "npm run build",
+    ".": "npm run build",
     "dev": "cross-env NODE_ENV=development babel-node src/index --extensions \".tsx,.ts,.js\"",
     "watch": "cross-env NODE_ENV=development babel-watch src/index --extensions \".tsx,.ts,.js\"",
     "lint": "eslint src --fix",

@@ -4,8 +4,8 @@ FROM node:18-alpine as builder
 RUN npm install -g @osmonauts/telescope
 WORKDIR /github.com/provenance-io/npm-publish/
 COPY ./ ./
-RUN yarn
+RUN yarn install
 
 FROM builder
-WORKDIR /app/
+WORKDIR /workspace/
 COPY --from=builder /github.com/provenance-io/npm-publish/ ./
