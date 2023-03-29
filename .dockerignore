@@ -1,0 +1,15 @@
+.git
+.github
+.gitignore
+.cache
+.vscode
+main
+module
+node_modules
+proto
+src
+Dockerfile
+*.iml
+*.ipr
+*.iws
+*.md

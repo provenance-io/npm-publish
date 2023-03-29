@@ -1,0 +1,61 @@
+name: Release
+#  Release workflow builds and publishes the Docker image to provenaceio/npm-publish repository.
+
+#  This workflow is run on release tags.
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+"     # Push events to matching #.#.#, i.e. 1.0, 20.15.10
+      - "[0-9]+.[0-9]+.[0-9]+-rc*" # Push events to matching #.#.#-rc#, i.e. 1.0-rc1, 20.15.10-rc5
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set tag version
+        run: |
+         VERSION=${GITHUB_REF##*/}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          PRE_RELEASE=false
+          if [[ "$VERSION" =~ -rc ]]; then
+            PRE_RELEASE=true
+          fi
+          echo "PRE_RELEASE=$PRE_RELEASE" >> "$GITHUB_ENV"
+          DOCKER_IMAGE=provenanceio/npm-publish
+          TAGS="$DOCKER_IMAGE:latest,$DOCKER_IMAGE:$VERSION"
+          echo "TAGS=$TAGS" >> "$GITHUB_ENV"
+      - name: Defined tag version
+        run: |
+          echo "DOCKER_IMAGE=$DOCKER_IMAGE"
+          echo "VERSION=$VERSION"
+          echo "PRE_RELEASE=$PRE_RELEASE"
+          echo "TAGS=$TAGS"
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          build-args: |
+            VERSION=${{ env.VERSION }}
+          platforms: linux/amd64
+          push: true
+          tags: ${{ env.TAGS }}
+      - name: Release Artifacts
+        uses: ncipollo/release-action@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          prerelease: ${{ env.PRE_RELEASE }}
+          bodyFile: "RELEASE_CHANGELOG.md"
