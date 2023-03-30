@@ -55,7 +55,7 @@ jobs:
       - name: Release Artifacts
         uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
+          tag: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           prerelease: ${{ env.PRE_RELEASE }}
           bodyFile: "RELEASE_CHANGELOG.md"
