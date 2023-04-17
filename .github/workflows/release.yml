@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Set tag version
         run: |
-         VERSION=${GITHUB_REF##*/}
+          VERSION=${GITHUB_REF##*/}
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           PRE_RELEASE=false
           if [[ "$VERSION" =~ -rc ]]; then
@@ -52,10 +52,10 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ env.TAGS }}
-      - name: Release Artifacts
-        uses: ncipollo/release-action@v1
+      - name: Create release
+        uses: actions/create-release@v1
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           prerelease: ${{ env.PRE_RELEASE }}
-          bodyFile: "RELEASE_CHANGELOG.md"
+          body_path: "RELEASE_CHANGELOG.md"
