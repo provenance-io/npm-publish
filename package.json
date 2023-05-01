@@ -45,7 +45,7 @@
     "url": "https://github.com/provenance-io/provjs/issues"
   },
   "devDependencies": {
-    "@babel/cli": "7.21.0",
+    "@babel/cli": "7.21.5",
     "@babel/core": "7.21.3",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/node": "^7.19.1",
