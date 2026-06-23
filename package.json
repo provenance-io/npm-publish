@@ -79,7 +79,7 @@
   "dependencies": {
     "@babel/runtime": "^8.0.0",
     "@cosmjs/amino": "0.39.0",
-    "@cosmjs/proto-signing": "0.31.0",
+    "@cosmjs/proto-signing": "0.39.0",
     "@cosmjs/stargate": "0.39.0",
     "@cosmjs/tendermint-rpc": "^0.39.0",
     "protobufjs": "^7.0.0"
